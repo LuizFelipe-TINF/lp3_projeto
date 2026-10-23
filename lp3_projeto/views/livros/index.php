@@ -31,7 +31,7 @@
 
                             <td>
                                 <?php if (!empty($linha['capa'])): ?>
-                                    <img src="/lp3_projeto/uploads/livros/<?= htmlspecialchars($linha['capa']) ?>"
+                                    <img src="/lp3_projeto/uploads/livros/<?= rawurlencode($linha['capa']) ?>"
                                          alt="Capa do livro"
                                          style="width: 60px; height: 80px; object-fit: cover;">
                                 <?php else: ?>

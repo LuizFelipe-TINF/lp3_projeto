@@ -1,3 +1,4 @@
+
 <?php include __DIR__ . '/../layout/header.php'; ?>
 
 <div class="page-layout">
@@ -13,10 +14,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Imagem</th>
                     <th>Filme</th>
                     <th>Diretor</th>
                     <th>Duração (minutos)</th>
-                    <th>Imagem</th>
                     <th class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -26,17 +27,27 @@
                     <?php foreach ($dados as $linha): ?>
                         <tr>
                             <td><?= $linha['id'] ?></td>
+
+                            <td>
+                                <?php if (!empty($linha['imagem'])): ?>
+                                    <img src="/lp3_projeto/uploads/filmes/<?= rawurlencode($linha['imagem']) ?>"
+                                         alt="Imagem do filme"
+                                         style="width: 60px; height: 80px; object-fit: cover;">
+                                <?php else: ?>
+                                    -
+                                <?php endif; ?>
+                            </td>
+
                             <td><?= htmlspecialchars($linha['filme']) ?></td>
                             <td><?= htmlspecialchars($linha['diretor']) ?></td>
                             <td><?= $linha['duracao'] !== null ? $linha['duracao'] . ' min' : '-' ?></td>
-                            <td><?= htmlspecialchars($linha['imagem'] ?? '') ?></td>
 
                             <td class="text-center">
                                 <a href="/lp3_projeto/filmes/editar?id=<?= $linha['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
 
                                 <a href="/lp3_projeto/filmes/excluir?id=<?= $linha['id'] ?>"
                                    class="btn btn-danger btn-sm"
-                                   onclick="return confirm('Tem certeza que deseja excluir este registro?');">
+                                   onclick="return confirm('Tem certeza que deseja excluir este filme?');">
                                    Excluir
                                 </a>
                             </td>
@@ -44,7 +55,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" style="text-align: center;">Nenhum registro encontrado.</td>
+                        <td colspan="6" style="text-align: center;">Nenhum filme cadastrado.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

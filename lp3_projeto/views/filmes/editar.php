@@ -8,7 +8,7 @@
             <h3>Editar Filme</h3>
         </div>
 
-        <form action="/lp3_projeto/filmes/editar?id=<?= $dado['id'] ?>" method="POST" class="card-form">
+        <form action="/lp3_projeto/filmes/editar?id=<?= $dado['id'] ?>" method="POST" enctype="multipart/form-data" class="card-form">
 
             <div class="form-group">
                 <label for="filme">Filme:</label>
@@ -27,7 +27,17 @@
 
             <div class="form-group">
                 <label for="imagem">Imagem:</label>
-                <input type="text" id="imagem" name="imagem" value="<?= htmlspecialchars($dado['imagem'] ?? '') ?>" class="form-control">
+
+                <?php if (!empty($dado['imagem'])): ?>
+                    <div class="mb-2">
+                        <img src="/lp3_projeto/uploads/filmes/<?= htmlspecialchars($dado['imagem']) ?>"
+                             alt="imagem do filme"
+                             style="max-width: 150px; height: auto;">
+                    </div>
+                <?php endif; ?>
+
+                <input type="file" id="imagem" name="imagem" class="form-control" accept="image/jpeg,image/png,image/gif,image/webp">
+                <small class="text-muted">Selecione uma nova imagem somente se quiser trocar a atual.</small>
             </div>
 
             <div class="mt-3 d-flex gap-2">
