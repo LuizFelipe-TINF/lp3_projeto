@@ -1,4 +1,3 @@
-```php
 <?php include __DIR__ . '/../layout/header.php'; ?>
 
 <div class="page-layout">
@@ -68,4 +67,3 @@
 </div>
 
 <?php include __DIR__ . '/../layout/footer.php'; ?>
-```
